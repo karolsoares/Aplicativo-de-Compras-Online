@@ -2,7 +2,7 @@
 
 ## Descrição do Projeto
 
-O "ComprasOnline" é um aplicativo móvel desenvolvido utilizando React Native com Expo. Ele simula uma plataforma de compras online, permitindo o cadastro e login de usuários, e o gerenciamento completo (CRUD) de um catálogo de produtos. Este projeto foi desenvolvido como parte da atividade avaliativa G2 da disciplina Tópicos Especiais em Computação e **passou por uma fase de refatoração para atender a requisitos técnicos adicionais**, focando em componentização, organização de pastas e padronização visual.
+O "ComprasOnline" é um aplicativo móvel desenvolvido utilizando React Native com Expo. Ele simula uma plataforma de compras online, permitindo o cadastro e login de usuários, e o gerenciamento completo (CRUD) de um catálogo de produtos. Este projeto foi desenvolvido como parte da atividade avaliativa G2 da disciplina Tópicos Especiais em Computação, focando em componentização, organização de pastas e padronização visual.
 
 ## Funcionalidades Implementadas
 
@@ -126,15 +126,11 @@ Para executar o projeto localmente, siga os passos abaixo:
 
 ## Desenvolvedores
 
-*   [Seu Nome / Nomes do Grupo Aqui]
-*   Assistência: Manus (IA)
+*  Felipe Guindani, Leonardo Osvald, Karoline Soares
 
 ## Considerações Finais
 
 *   A tela de "Carrinho" é um placeholder e não possui funcionalidades completas de e-commerce.
 *   A gestão de permissões para o CRUD de produtos pode ser refinada com Row Level Security no Supabase.
 *   Para a submissão no GitHub, a pasta `node_modules` não deve ser incluída (já configurado no `.gitignore`).
-
----
-*Este README foi atualizado para o projeto ComprasOnline refatorado.*
 
