@@ -38,7 +38,7 @@ O aplicativo inclui as seguintes funcionalidades, conforme os requisitos obrigat
     *   Acessível pela aba "Perfil", contém versão do app, desenvolvedores, contato e descrição.
 9.  **Comentários Escondidos:** Todas as telas e componentes principais possuem comentários explicativos no código-fonte.
 
-**Melhorias da Refatoração:**
+**Melhorias:**
 
 *   **Uso do `react-navigation`:** Navegação em pilha (Stack Navigator) e abas (Bottom Tabs) implementada e organizada.
 *   **Autenticação com Supabase:** Mantida e funcional.
@@ -59,7 +59,7 @@ O aplicativo inclui as seguintes funcionalidades, conforme os requisitos obrigat
 *   **JavaScript:** Linguagem de programação principal.
 *   **React Navigation:** Biblioteca para gerenciamento de navegação entre telas.
 
-## Estrutura do Projeto (Pós-Refatoração)
+## Estrutura do Projeto:
 
 O código-fonte está organizado da seguinte forma:
 
@@ -86,7 +86,7 @@ Para executar o projeto localmente, siga os passos abaixo:
 
 1.  **Clone o Repositório:**
     ```bash
-    git clone https://github.com/LipeGuindani/aplicativocompras.git 
+    git clone https://github.com/karolsoares/aplicativocompras.git 
     cd aplicativocompras 
     ```
 
