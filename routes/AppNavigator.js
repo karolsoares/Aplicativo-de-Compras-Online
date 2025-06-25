@@ -13,6 +13,11 @@ import CadastroScreen from '../screens/Auth/CadastroScreen';
 import ProductListScreen from '../screens/Products/ProductListScreen';
 import ProductFormScreen from '../screens/Products/ProductFormScreen';
 import ProductDetailScreen from '../screens/Products/ProductDetailScreen';
+import CartDetailScreen from '../screens/cart/CarrinhoScreenDetails';
+import CarrinhoList from '../screens/cart/CarrinhoList';
+
+// (Comentário Escondido: Importa a tela de carrinho)
+import CarrinhoScreenPlaceholder from '../screens/cart/CarrinhoScreenPlaceholder';
 
 // (Comentário Escondido: Importa a tela de Informações do App da nova localização)
 import InfoAppScreen from '../screens/InfoAppScreen';
@@ -25,6 +30,7 @@ const AuthStack = createStackNavigator();
 const ProductStack = createStackNavigator();
 const ProfileStack = createStackNavigator(); // (Comentário Escondido: Stack para a aba de Perfil)
 const MainAppTabs = createBottomTabNavigator();
+const CarrinhoStack = createStackNavigator();
 
 // (Comentário Escondido: Navegador para as telas de autenticação)
 const AuthNavigator = () => (
@@ -48,12 +54,18 @@ const ProductNavigator = () => (
 );
 
 // (Comentário Escondido: Tela Placeholder para Carrinho)
-const CarrinhoScreenPlaceholder = () => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    {/* (Comentário Escondido: Conteúdo da tela de carrinho virá aqui) */}
-    <Text>Tela do Carrinho (Em Desenvolvimento)</Text>
-  </View>
+const CarrinhoNavigator = () => (
+  <CarrinhoStack.Navigator screenOptions={{
+    headerStyle: { backgroundColor: '#FFA500' },
+    headerTintColor: '#fff',
+    headerTitleStyle: { fontWeight: 'bold' }
+  }}>
+    <CarrinhoStack.Screen name="CarrinhoScreenPlaceholder" component={CarrinhoScreenPlaceholder} options={{ title: 'Carrinho' }} />
+    <CarrinhoStack.Screen name="CarrinhoList" component={CarrinhoList} options={{ title: 'Seu Carrinho' }} />
+    <CarrinhoStack.Screen name="CarrinhoScreenDetails" component={CartDetailScreen} options={{ title: 'Detalhes do Produto' }} />
+  </CarrinhoStack.Navigator>
 );
+
 
 // (Comentário Escondido: Tela Placeholder para Perfil - esta irá navegar para InfoAppScreen)
 const PerfilScreenPlaceholder = ({ navigation }) => (
@@ -91,7 +103,7 @@ const MainAppNavigator = () => (
     headerShown: false, // (Comentário Escondido: Os Stacks internos já têm seus próprios headers)
   })}>
     <MainAppTabs.Screen name="ProdutosTab" component={ProductNavigator} options={{ title: 'Produtos' }} />
-    <MainAppTabs.Screen name="CarrinhoTab" component={CarrinhoScreenPlaceholder} options={{ title: 'Carrinho' }} />
+    <MainAppTabs.Screen name="CarrinhoTab" component={CarrinhoNavigator} options={{ title: 'Carrinho' }} />
     <MainAppTabs.Screen name="PerfilTab" component={ProfileNavigator} options={{ title: 'Perfil' }} />
   </MainAppTabs.Navigator>
 );
