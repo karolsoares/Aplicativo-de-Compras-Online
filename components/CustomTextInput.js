@@ -1,8 +1,8 @@
-// (Componente Reutilizável - CustomTextInput - Comentário Escondido: Campo de texto personalizado para uso em formulários)
+// (Componente Reutilizável - CustomTextInput - Campo de texto personalizado para uso em formulários)
 import React from 'react';
 import { TextInput, StyleSheet, View, Text } from 'react-native';
 
-// (Comentário Escondido: Props esperadas pelo componente CustomTextInput)
+// (Props esperadas pelo componente CustomTextInput)
 // value: Valor do campo de texto
 // onChangeText: Função para atualizar o valor
 // placeholder: Texto de placeholder
@@ -32,36 +32,36 @@ const CustomTextInput = ({
 }) => {
   return (
     <View style={[styles.container, style]}>
-      {/* (Comentário Escondido: Renderiza o label se fornecido) */}
+      {/* Renderiza o label se fornecido */}
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         style={[
           styles.input,
-          multiline && styles.multilineInput, // (Comentário Escondido: Aplica estilo multiline se necessário)
-          disabled && styles.disabledInput, // (Comentário Escondido: Aplica estilo desabilitado se necessário)
+          multiline && styles.multilineInput, // Aplica estilo multiline se necessário
+          disabled && styles.disabledInput, // Aplica estilo desabilitado se necessário
           inputStyle,
         ]}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor="#aaa" // (Comentário Escondido: Cor padrão para placeholder)
+        placeholderTextColor="#aaa" // Cor padrão para placeholder
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         autoCapitalize={autoCapitalize}
         editable={!disabled}
         multiline={multiline}
-        numberOfLines={multiline ? numberOfLines : 1} // (Comentário Escondido: numberOfLines só se aplica a multiline)
-        textAlignVertical={multiline ? 'top' : 'center'} // (Comentário Escondido: Alinhamento vertical para multiline)
+        numberOfLines={multiline ? numberOfLines : 1} // numberOfLines só se aplica a multiline
+        textAlignVertical={multiline ? 'top' : 'center'} // Alinhamento vertical para multiline
       />
     </View>
   );
 };
 
-// (Comentário Escondido: Estilos padrão para o CustomTextInput)
+// Estilos padrão para o CustomTextInput
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    marginBottom: 15, // (Comentário Escondido: Margem inferior padrão)
+    marginBottom: 15, // Margem inferior padrão
   },
   label: {
     fontSize: 16,
@@ -81,15 +81,14 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   multilineInput: {
-    height: 100, // (Comentário Escondido: Altura padrão para campos multiline)
-    paddingTop: 15, // (Comentário Escondido: Padding superior para texto multiline)
+    height: 100, // Altura padrão para campos multiline
+    paddingTop: 15, // Padding superior para texto multiline
   },
   disabledInput: {
-    backgroundColor: '#e9ecef', // (Comentário Escondido: Cor de fundo para campos desabilitados)
+    backgroundColor: '#e9ecef', // Cor de fundo para campos desabilitados
     color: '#6c757d',
   },
 });
 
-// (Comentário Escondido: Exporta o componente para ser usado em outras partes do aplicativo)
+// Exporta o componente para ser usado em outras partes do aplicativo
 export default CustomTextInput;
-

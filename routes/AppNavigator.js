@@ -1,49 +1,49 @@
-// (Arquivo Principal do Aplicativo - Comentário Escondido: Configura a navegação principal e o estado de autenticação)
+// (Configura a navegação principal e o estado de autenticação)
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; // (Comentário Escondido: Importa o TabNavigator)
-import { View, ActivityIndicator, StyleSheet, Text, Button } from 'react-native'; // (Comentário Escondido: Adicionado Button)
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; // (Importa o TabNavigator)
+import { View, ActivityIndicator, StyleSheet, Text, Button } from 'react-native'; // (Adicionado Button)
 
-// (Comentário Escondido: Importa as telas de autenticação da nova localização)
+// (Importa as telas de autenticação da nova localização)
 import LoginScreen from '../screens/Auth/LoginScreen';
 import CadastroScreen from '../screens/Auth/CadastroScreen';
 
-// (Comentário Escondido: Importa as telas de produtos da nova localização)
+// (Importa as telas de produtos da nova localização)
 import ProductListScreen from '../screens/Products/ProductListScreen';
 import ProductFormScreen from '../screens/Products/ProductFormScreen';
 import ProductDetailScreen from '../screens/Products/ProductDetailScreen';
 import CartDetailScreen from '../screens/cart/CarrinhoScreenDetails';
 import CarrinhoList from '../screens/cart/CarrinhoList';
 
-// (Comentário Escondido: Importa a tela de carrinho)
+// (Importa a tela de carrinho)
 import CarrinhoScreenPlaceholder from '../screens/cart/CarrinhoScreenPlaceholder';
 
-// (Comentário Escondido: Importa a tela de Informações do App da nova localização)
+// (Importa a tela de Informações do App da nova localização)
 import InfoAppScreen from '../screens/InfoAppScreen';
 
-// (Comentário Escondido: Importa o cliente Supabase da nova localização)
+// (Importa o cliente Supabase da nova localização)
 import { supabase } from '../services/supabaseClient';
 
-// (Comentário Escondido: Cria os navegadores Stack e Tab)
+// (Cria os navegadores Stack e Tab)
 const AuthStack = createStackNavigator();
 const ProductStack = createStackNavigator();
-const ProfileStack = createStackNavigator(); // (Comentário Escondido: Stack para a aba de Perfil)
+const ProfileStack = createStackNavigator(); // (Stack para a aba de Perfil)
 const MainAppTabs = createBottomTabNavigator();
 const CarrinhoStack = createStackNavigator();
 
-// (Comentário Escondido: Navegador para as telas de autenticação)
+// (Navegador para as telas de autenticação)
 const AuthNavigator = () => (
-  <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+  <AuthStack.Navigator screenOptions={{ headerShown: false}}>
     <AuthStack.Screen name="LoginScreen" component={LoginScreen} />
     <AuthStack.Screen name="CadastroScreen" component={CadastroScreen} />
   </AuthStack.Navigator>
 );
 
-// (Comentário Escondido: Navegador Stack para as telas de Produtos)
+// (Navegador Stack para as telas de Produtos)
 const ProductNavigator = () => (
   <ProductStack.Navigator screenOptions={{
-    headerStyle: { backgroundColor: '#FFA500' },
+    headerStyle: { backgroundColor: '#9b09b4' },
     headerTintColor: '#fff',
     headerTitleStyle: { fontWeight: 'bold' }
   }}>
@@ -53,10 +53,10 @@ const ProductNavigator = () => (
   </ProductStack.Navigator>
 );
 
-// (Comentário Escondido: Tela Placeholder para Carrinho)
+// (Tela Placeholder para Carrinho)
 const CarrinhoNavigator = () => (
   <CarrinhoStack.Navigator screenOptions={{
-    headerStyle: { backgroundColor: '#FFA500' },
+    headerStyle: { backgroundColor: '#9b09b4' },
     headerTintColor: '#fff',
     headerTitleStyle: { fontWeight: 'bold' }
   }}>
@@ -67,20 +67,20 @@ const CarrinhoNavigator = () => (
 );
 
 
-// (Comentário Escondido: Tela Placeholder para Perfil - esta irá navegar para InfoAppScreen)
+// (Tela Placeholder para Perfil - esta irá navegar para InfoAppScreen)
 const PerfilScreenPlaceholder = ({ navigation }) => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    {/* (Comentário Escondido: Conteúdo da tela de perfil virá aqui) */}
+    {/* (Conteúdo da tela de perfil virá aqui) */}
     <Text>Tela de Perfil</Text>
     <Button title="Sobre o App" onPress={() => navigation.navigate('InfoAppScreen')} />
     <Button title="Logout" onPress={async () => await supabase.auth.signOut()} color="red" />
   </View>
 );
 
-// (Comentário Escondido: Navegador Stack para a aba de Perfil, incluindo InfoAppScreen)
+// (Navegador Stack para a aba de Perfil, incluindo InfoAppScreen)
 const ProfileNavigator = () => (
    <ProfileStack.Navigator screenOptions={{
-    headerStyle: { backgroundColor: '#FFA500' },
+    headerStyle: { backgroundColor: '#9b09b4' },
     headerTintColor: '#fff',
     headerTitleStyle: { fontWeight: 'bold' }
   }}>
@@ -90,17 +90,17 @@ const ProfileNavigator = () => (
 );
 
 
-// (Comentário Escondido: Navegador Principal com Abas para quando o usuário está logado)
+// (Navegador Principal com Abas para quando o usuário está logado)
 const MainAppNavigator = () => (
   <MainAppTabs.Navigator screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
-      // (Comentário Escondido: Ícones podem ser adicionados aqui - ex: usando @expo/vector-icons)
+      // (Ícones podem ser adicionados aqui - ex: usando @expo/vector-icons)
       let iconName = focused ? 'home' : 'home-outline'; // Exemplo, precisaria de uma lib de ícones
       return <Text style={{color: color}}>{iconName.substring(0,2)}</Text>; // Placeholder para ícone
     },
-    tabBarActiveTintColor: '#FFA500',
+    tabBarActiveTintColor: '#9b09b4',
     tabBarInactiveTintColor: 'gray',
-    headerShown: false, // (Comentário Escondido: Os Stacks internos já têm seus próprios headers)
+    headerShown: false, // (Os Stacks internos já têm seus próprios headers)
   })}>
     <MainAppTabs.Screen name="ProdutosTab" component={ProductNavigator} options={{ title: 'Produtos' }} />
     <MainAppTabs.Screen name="CarrinhoTab" component={CarrinhoNavigator} options={{ title: 'Carrinho' }} />
@@ -108,7 +108,7 @@ const MainAppNavigator = () => (
   </MainAppTabs.Navigator>
 );
 
-// (Comentário Escondido: Componente principal do App que gerencia a navegação baseada na autenticação)
+// (Componente principal do App que gerencia a navegação baseada na autenticação)
 const App = () => {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -122,7 +122,7 @@ const App = () => {
 
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      // (Comentário Escondido: Se o evento for SIGNED_OUT, podemos explicitamente setar loading para false se necessário)
+      // (Se o evento for SIGNED_OUT, podemos explicitamente setar loading para false se necessário)
       // if (_event === 'SIGNED_OUT') setLoading(false);
     });
 

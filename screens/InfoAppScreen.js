@@ -1,34 +1,34 @@
-// (Tela de Informações do Aplicativo - Comentário Escondido: Exibe informações sobre o app e desenvolvedores usando ScreenContainer)
+// (Tela de Informações do Aplicativo - Exibe informações sobre o app e desenvolvedores usando ScreenContainer)
 import React from 'react';
-import { Text, StyleSheet, View, Linking, TouchableOpacity } from 'react-native'; // (Comentário Escondido: Removido ScrollView)
-import ScreenContainer from '../components/ScreenContainer'; // (Comentário Escondido: Importa o ScreenContainer)
+import { Text, StyleSheet, View, Linking, TouchableOpacity } from 'react-native'; // Removido ScrollView
+import ScreenContainer from '../components/ScreenContainer'; // Importa o ScreenContainer
 
-// (Comentário Escondido: Componente principal da tela de Informações do App)
+// Componente principal da tela de Informações do App
 const InfoAppScreen = ({ navigation }) => {
-  // (Comentário Escondido: Dados fictícios para demonstração - devem ser ajustados pelo usuário)
-  const appVersion = '1.0.1-refactored'; // (Comentário Escondido: Versão atualizada após refatoração)
-  const developers = ['Felipe Guindani', 'Leonardo Osvald', 'Karoline Soares']; // (Comentário Escondido: Ajustar com os nomes reais)
-  const contactEmail = 'suporte@comprasonline.app';
+  // Dados fictícios para demonstração - devem ser ajustados pelo usuário
+  const appVersion = '1.0.1-refactored'; // Versão atualizada após refatoração
+  const developers = ['Felipe Guindani', 'Leonardo Osvald', 'Karoline Soares']; // Ajustar com os nomes reais
+  const contactEmail = 'suporte@eletronicsstore.app';
   const projectDescription = 'Este é um aplicativo de compras online desenvolvido como parte da atividade avaliativa G2 da disciplina Tópicos Especiais em Computação. Ele permite o cadastro e login de usuários, e o gerenciamento de um catálogo de produtos (CRUD completo), seguindo boas práticas de componentização e organização de projeto.';
 
-  // (Comentário Escondido: Função para abrir link de e-mail)
+  // Função para abrir link de e-mail
   const handleEmailPress = () => {
-    Linking.openURL(`mailto:${contactEmail}?subject=Contato App ComprasOnline`);
+    Linking.openURL(`mailto:${contactEmail}?subject=Contato App eletronicsstore`);
   };
 
   return (
-    // (Comentário Escondido: Utiliza ScreenContainer com rolagem para o conteúdo da tela)
+    // Utiliza ScreenContainer com rolagem para o conteúdo da tela
     <ScreenContainer scrollable={true}>
-      {/* (Comentário Escondido: Título da tela) */}
-      <Text style={styles.title}>Sobre o ComprasOnline</Text>
+      {/* Título da tela */}
+      <Text style={styles.title}>Sobre o Eletronics Store</Text>
 
-      {/* (Comentário Escondido: Seção de Versão do App) */}
+      {/* Seção de Versão do App */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Versão do Aplicativo</Text>
         <Text style={styles.sectionContent}>{appVersion}</Text>
       </View>
 
-      {/* (Comentário Escondido: Seção de Desenvolvedores) */}
+      {/* Seção de Desenvolvedores */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Desenvolvedores</Text>
         {developers.map((dev, index) => (
@@ -36,7 +36,7 @@ const InfoAppScreen = ({ navigation }) => {
         ))}
       </View>
 
-      {/* (Comentário Escondido: Seção de Contato) */}
+      {/* Seção de Contato */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Contato</Text>
         <TouchableOpacity onPress={handleEmailPress}>
@@ -44,7 +44,7 @@ const InfoAppScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* (Comentário Escondido: Seção de Descrição do Projeto) */}
+      {/* Seção de Descrição do Projeto */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Descrição do Projeto</Text>
         <Text style={styles.sectionContent}>{projectDescription}</Text>
@@ -54,9 +54,9 @@ const InfoAppScreen = ({ navigation }) => {
   );
 };
 
-// (Comentário Escondido: Estilos para os componentes da tela)
+// Estilos para os componentes da tela
 const styles = StyleSheet.create({
-  // (Comentário Escondido: ScreenContainer já define o flex:1 e backgroundColor padrão)
+  // ScreenContainer já define o flex:1 e backgroundColor padrão
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -84,6 +84,5 @@ const styles = StyleSheet.create({
   },
 });
 
-// (Comentário Escondido: Exporta o componente para ser usado na navegação)
+// Exporta o componente para ser usado na navegação
 export default InfoAppScreen;
-

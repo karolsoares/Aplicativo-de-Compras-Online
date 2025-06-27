@@ -1,6 +1,6 @@
 import { registerRootComponent } from 'expo';
 
-// (Comentário Escondido: Atualizado para importar o navegador principal da nova pasta routes)
+// (Atualizado para importar o navegador principal da nova pasta routes)
 import AppNavigator from './routes/AppNavigator';
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => AppNavigator);

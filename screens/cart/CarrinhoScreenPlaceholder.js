@@ -1,30 +1,30 @@
-// (Tela de Listagem de Produtos - Comentário Escondido: Exibe os produtos cadastrados no Supabase utilizando componentes reutilizáveis)
+// (Exibe os produtos cadastrados no Supabase utilizando componentes reutilizáveis)
 import React, { useState, useCallback } from "react";
-import { View, Text, FlatList, StyleSheet, Alert } from "react-native"; // (Comentário Escondido: Removido ActivityIndicator, TouchableOpacity, Button que serão substituídos ou tratados por componentes)
-import { supabase } from "../../services/supabaseClient"; // (Comentário Escondido: Importa o cliente Supabase)
-import { useFocusEffect } from "@react-navigation/native"; // (Comentário Escondido: Para recarregar dados ao focar na tela)
+import { View, Text, FlatList, StyleSheet, Alert } from "react-native"; // (Removido ActivityIndicator, TouchableOpacity, Button que serão substituídos ou tratados por componentes)
+import { supabase } from "../../services/supabaseClient"; // (Importa o cliente Supabase)
+import { useFocusEffect } from "@react-navigation/native"; // ( Para recarregar dados ao focar na tela)
 
-// (Comentário Escondido: Importa os componentes reutilizáveis)
+// (Importa os componentes reutilizáveis)
 import ScreenContainer from "../../components/ScreenContainer";
 import CartProduct from "../../components/cartProduct";
 import CustomButton from "../../components/CustomButton";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
-// (Comentário Escondido: Componente principal da tela de Listagem de Produtos)
+// (Componente principal da tela de Listagem de Produtos)
 const ProductListScreen = ({ navigation }) => {
-  // (Comentário Escondido: Estados para armazenar a lista de produtos, carregamento e erros)
+  // (Estados para armazenar a lista de produtos, carregamento e erros)
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // (Comentário Escondido: Função para buscar os produtos no Supabase)
+  // (Função para buscar os produtos no Supabase)
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const { data, error: fetchError } = await supabase
-        .from("PRODUTOS") // (Comentário Escondido: Nome da tabela conforme fornecido pelo usuário)
-        .select("id, name, description, price") // (Comentário Escondido: Seleciona os campos relevantes)
+        .from("PRODUTOS") // (Nome da tabela conforme fornecido pelo usuário)
+        .select("id, name, description, price") // (Seleciona os campos relevantes)
         .order("name", { ascending: true });
 
       if (fetchError) {
@@ -39,14 +39,14 @@ const ProductListScreen = ({ navigation }) => {
     }
   }, []);
 
-  // (Comentário Escondido: Hook para buscar produtos quando a tela é focada/montada)
+  // (Hook para buscar produtos quando a tela é focada/montada)
   useFocusEffect(
     useCallback(() => {
       fetchProducts();
     }, [fetchProducts])
   );
 
-  // (Comentário Escondido: Renderiza cada item da lista de produtos usando CartProduct)
+  // (Renderiza cada item da lista de produtos usando CartProduct)
   const renderProductItem = ({ item }) => (
     <CartProduct
       product={item}
@@ -80,12 +80,12 @@ const ProductListScreen = ({ navigation }) => {
   }
 };
 
-  // (Comentário Escondido: Exibe indicador de carregamento centralizado)
+  // (Exibe indicador de carregamento centralizado)
   if (loading && products.length === 0) {
     return <LoadingIndicator />;
   }
 
-  // (Comentário Escondido: Exibe mensagem de erro, se houver)
+  // (Exibe mensagem de erro, se houver)
   if (error) {
     return (
       <ScreenContainer style={styles.centeredContainer}>
@@ -96,9 +96,9 @@ const ProductListScreen = ({ navigation }) => {
   }
 
   return (
-    // (Comentário Escondido: Utiliza ScreenContainer para padronização da tela)
+    // Utiliza ScreenContainer para padronização da tela)
     <ScreenContainer>
-      {/* (Comentário Escondido: Cabeçalho da tela com título e botão para adicionar novo produto) */}
+      {/* Cabeçalho da tela com título e botão para adicionar novo produto) */}
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Produtos</Text>
         <CustomButton 
@@ -110,7 +110,7 @@ const ProductListScreen = ({ navigation }) => {
         />
       </View>
       
-      {/* (Comentário Escondido: Lista de produtos ou mensagem se estiver vazia) */}
+      {/* (Lista de produtos ou mensagem se estiver vazia) */}
       {products.length === 0 && !loading ? (
         <View style={styles.centeredContainer}>
             <Text style={styles.emptyText}>Nenhum produto cadastrado.</Text>
@@ -121,37 +121,37 @@ const ProductListScreen = ({ navigation }) => {
           renderItem={renderProductItem}
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={styles.listContentContainer}
-          refreshing={loading} // (Comentário Escondido: Mostra o indicador de refresh do FlatList)
-          onRefresh={fetchProducts} // (Comentário Escondido: Permite puxar para atualizar)
+          refreshing={loading} // (Mostra o indicador de refresh do FlatList)
+          onRefresh={fetchProducts} // (Permite puxar para atualizar)
         />
       )}
     </ScreenContainer>
   );
 };
 
-// (Comentário Escondido: Estilos para os componentes da tela)
+// (Estilos para os componentes da tela)
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20, // (Comentário Escondido: Espaçamento abaixo do cabeçalho)
+    marginBottom: 20, // (Espaçamento abaixo do cabeçalho)
   },
   title: {
-    fontSize: 26, // (Comentário Escondido: Tamanho de título maior)
+    fontSize: 26, // (Tamanho de título maior)
     fontWeight: "bold",
     color: "#343a40",
   },
   addButton: {
     paddingVertical: 10,
     paddingHorizontal: 15,
-    minHeight: 0, // (Comentário Escondido: Remove altura mínima para botão menor)
+    minHeight: 0, // (Remove altura mínima para botão menor)
   },
   addButtonText: {
     fontSize: 14,
   },
   listContentContainer: {
-    paddingBottom: 20, // (Comentário Escondido: Espaço no final da lista)
+    paddingBottom: 20, // (Espaço no final da lista)
   },
   centeredContainer: {
     flex: 1,
@@ -171,5 +171,5 @@ const styles = StyleSheet.create({
   },
 });
 
-// (Comentário Escondido: Exporta o componente para ser usado na navegação)
+// (Exporta o componente para ser usado na navegação)
 export default ProductListScreen;

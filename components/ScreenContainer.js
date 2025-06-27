@@ -1,13 +1,5 @@
-// (Componente Reutilizável - ScreenContainer - Comentário Escondido: Container padrão para telas)
-import React from 'react';
+// (Componente Reutilizável - ScreenContainer - Container padrão para telas)
 import { View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
-
-// (Comentário Escondido: Props esperadas pelo componente ScreenContainer)
-// children: Conteúdo a ser renderizado dentro do container
-// style: Estilos adicionais para o container principal
-// scrollable: Booleano para habilitar a rolagem (usa ScrollView)
-// safeArea: Booleano para usar SafeAreaView (evita notch e áreas de sistema)
-// contentContainerStyle: Estilos para o container de conteúdo interno (especialmente útil com scrollable)
 
 const ScreenContainer = ({ children, style, scrollable = false, safeArea = true, contentContainerStyle }) => {
   const ContainerComponent = safeArea ? SafeAreaView : View;
@@ -18,7 +10,7 @@ const ScreenContainer = ({ children, style, scrollable = false, safeArea = true,
       <InnerComponent 
         style={[styles.innerContainer, scrollable && styles.scrollFlex]} 
         contentContainerStyle={scrollable ? [styles.scrollContent, contentContainerStyle] : contentContainerStyle}
-        keyboardShouldPersistTaps="handled" // (Comentário Escondido: Ajuda com interações de teclado em ScrollViews)
+        keyboardShouldPersistTaps="handled" // Ajuda com interações de teclado em ScrollViews
       >
         {children}
       </InnerComponent>
@@ -26,25 +18,24 @@ const ScreenContainer = ({ children, style, scrollable = false, safeArea = true,
   );
 };
 
-// (Comentário Escondido: Estilos padrão para o ScreenContainer)
+// Estilos padrão para o ScreenContainer
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f5f5f5', // (Comentário Escondido: Cor de fundo padrão para consistência)
+    backgroundColor: '#f5f5f5', // Cor de fundo padrão para consistência
   },
   innerContainer: {
     flex: 1,
-    padding: 20, // (Comentário Escondido: Padding padrão para o conteúdo da tela)
+    padding: 20, // Padding padrão para o conteúdo da tela
   },
   scrollFlex: {
-    flexGrow: 1, // (Comentário Escondido: Garante que o ScrollView possa crescer)
+    flexGrow: 1, // Garante que o ScrollView possa crescer
   },
   scrollContent: {
-    flexGrow: 1, // (Comentário Escondido: Permite que o conteúdo dentro do ScrollView se expanda)
-    justifyContent: 'flex-start', // (Comentário Escondido: Alinha o conteúdo no início por padrão)
+    flexGrow: 1, // Permite que o conteúdo dentro do ScrollView se expanda
+    justifyContent: 'flex-start', // Alinha o conteúdo no início por padrão
   },
 });
 
-// (Comentário Escondido: Exporta o componente para ser usado em outras partes do aplicativo)
+// Exporta o componente para ser usado em outras partes do aplicativo
 export default ScreenContainer;
-

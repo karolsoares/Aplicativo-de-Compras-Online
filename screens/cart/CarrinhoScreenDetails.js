@@ -1,25 +1,25 @@
-// (Tela de Detalhes do Produto - Comentário Escondido: Exibe informações detalhadas de um produto específico do Supabase usando componentes reutilizáveis)
+// (Tela de Detalhes do Produto: Exibe informações detalhadas de um produto específico do Supabase usando componentes reutilizáveis)
 import React, { useState, useEffect, useCallback } from "react";
-import { Text, StyleSheet, Alert, View } from "react-native"; // (Comentário Escondido: Removido ScrollView, ActivityIndicator, Button)
-import { supabase } from "../../services/supabaseClient"; // (Comentário Escondido: Importa o cliente Supabase)
+import { Text, StyleSheet, Alert, View } from "react-native"; // (Removido ScrollView, ActivityIndicator, Button)
+import { supabase } from "../../services/supabaseClient"; // (Importa o cliente Supabase)
 import { useFocusEffect } from "@react-navigation/native";
 
-// (Comentário Escondido: Importa os componentes reutilizáveis)
+// (Importa os componentes reutilizáveis)
 import ScreenContainer from "../../components/ScreenContainer";
 import CustomButton from "../../components/CustomButton";
 import LoadingIndicator from "../../components/LoadingIndicator";
 
-// (Comentário Escondido: Componente principal da tela de Detalhes do Produto)
+// (Componente principal da tela de Detalhes do Produto)
 const CartDetailScreen = ({ route, navigation }) => {
-  // (Comentário Escondido: Obtém o productId dos parâmetros da rota)
+  // (Obtém o productId dos parâmetros da rota)
   const { productId } = route.params;
 
-  // (Comentário Escondido: Estados para armazenar os detalhes do produto, carregamento e erros)
+  // (Estados para armazenar os detalhes do produto, carregamento e erros)
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // (Comentário Escondido: Função para buscar os detalhes do produto no Supabase)
+  // (Função para buscar os detalhes do produto no Supabase)
   const fetchProductDetails = useCallback(async () => {
     if (!productId) {
       setError("ID do produto não fornecido.");
@@ -31,9 +31,9 @@ const CartDetailScreen = ({ route, navigation }) => {
     try {
       const { data, error: fetchError } = await supabase
         .from("PRODUTOS")
-        .select("id, name, description, price, created_at") // (Comentário Escondido: Seleciona os campos relevantes)
+        .select("id, name, description, price, created_at") // (Seleciona os campos relevantes)
         .eq("id", productId)
-        .single(); // (Comentário Escondido: Espera um único resultado)
+        .single(); // (Espera um único resultado)
 
       if (fetchError) {
         throw fetchError;
@@ -47,14 +47,14 @@ const CartDetailScreen = ({ route, navigation }) => {
     }
   }, [productId]);
 
-  // (Comentário Escondido: Hook para buscar detalhes do produto quando a tela é focada/montada)
-    useFocusEffect(
-      useCallback(() => {
-        fetchProductDetails();
-      }, [fetchProductDetails])
-    );
+  // (Hook para buscar detalhes do produto quando a tela é focada/montada)
+  useFocusEffect(
+    useCallback(() => {
+      fetchProductDetails();
+    }, [fetchProductDetails])
+  );
   
-  // (Comentário Escondido: Função para formatar a data)
+  // (Função para formatar a data)
   const formatDate = (dateString) => {
     if (!dateString) return "Data não disponível";
     try {
@@ -62,21 +62,20 @@ const CartDetailScreen = ({ route, navigation }) => {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
-        // (Comentário Escondido: Removido hour e minute para simplificar, pode ser adicionado se necessário)
         // hour: "2-digit", 
         // minute: "2-digit",
       });
     } catch (e) {
-      return dateString; // (Comentário Escondido: Retorna a string original se a formatação falhar)
+      return dateString; // (Retorna a string original se a formatação falhar)
     }
   };
 
-  // (Comentário Escondido: Exibe indicador de carregamento)
+  // (Exibe indicador de carregamento)
   if (loading) {
     return <LoadingIndicator />;
   }
 
-  // (Comentário Escondido: Exibe mensagem de erro, se houver)
+  // (Exibe mensagem de erro, se houver)
   if (error || !product) {
     return (
       <ScreenContainer style={styles.centeredContainer}>
@@ -88,24 +87,24 @@ const CartDetailScreen = ({ route, navigation }) => {
   }
 
   return (
-    // (Comentário Escondido: Utiliza ScreenContainer com rolagem para exibir detalhes do produto)
+    // (Utiliza ScreenContainer com rolagem para exibir detalhes do produto)
     <ScreenContainer scrollable={true}>
-      {/* (Comentário Escondido: Nome do produto) */}
+      {/* (Nome do produto) */}
       <Text style={styles.productName}>{product.name}</Text>
       
-      {/* (Comentário Escondido: Descrição do produto) */}
+      {/* (Descrição do produto) */}
       <Text style={styles.label}>Descrição:</Text>
       <Text style={styles.value}>{product.description || "Descrição não fornecida."}</Text>
       
-      {/* (Comentário Escondido: Preço do produto) */}
+      {/* (Preço do produto) */}
       <Text style={styles.label}>Preço:</Text>
       <Text style={styles.priceValue}>R$ {product.price !== null ? Number(product.price).toFixed(2).replace(".", ",") : "N/A"}</Text>
       
-      {/* (Comentário Escondido: Data de criação do produto) */}
+      {/* (Data de criação do produto) */}
       <Text style={styles.label}>Cadastrado em:</Text>
       <Text style={styles.value}>{formatDate(product.created_at)}</Text>
       
-       {/* (Comentário Escondido: Botão para voltar para a lista usando CustomButton) */}
+      {/* (Botão para voltar para a lista usando CustomButton) */}
       <CustomButton 
         title="Voltar para Lista"
         onPress={() => navigation.goBack()}
@@ -116,7 +115,7 @@ const CartDetailScreen = ({ route, navigation }) => {
   );
 };
 
-// (Comentário Escondido: Estilos para os componentes da tela)
+// (Estilos para os componentes da tela)
 const styles = StyleSheet.create({
   centeredContainer: {
     justifyContent: "center",
@@ -154,10 +153,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonStyle: {
-    marginTop: 10, // (Comentário Escondido: Adiciona margem acima dos botões)
+    marginTop: 10, // (Adiciona margem acima dos botões)
   }
 });
 
-// (Comentário Escondido: Exporta o componente para ser usado na navegação)
+// (Exporta o componente para ser usado na navegação)
 export default CartDetailScreen;
-
