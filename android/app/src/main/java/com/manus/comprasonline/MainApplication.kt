@@ -1,4 +1,4 @@
-package com.manus.comprasonline
+package com.eletronicsstore
 
 import android.app.Application
 import android.content.res.Configuration
