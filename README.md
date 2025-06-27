@@ -1,4 +1,4 @@
-# Aplicativo ComprasOnline
+# Aplicativo Electronics Store
 
 ## Tecnologias Utilizadas
 
